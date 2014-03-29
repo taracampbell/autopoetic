@@ -1,4 +1,8 @@
 body {
-	background-image:url("../img/background.jpg");
+	background-color: #ffffff;
 	background-repeat:no-repeat;
+}
+
+#cell {
+	position:absolute;
 }
