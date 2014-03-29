@@ -2,13 +2,35 @@
 <html lang="en">
 
 <head>
+	<title>autopoetic</title>
 	<link rel="stylesheet" href="css/autopoetic.css">
 	<link rel="stylesheet" href="css/animate.css">
+	<script src="js/leap.js"></script>
+	<script>
+// Setup Leap loop with frame callback function
+var controllerOptions = {enableGestures: true};
+
+Leap.loop(controllerOptions, function(frame) {
+    // Body of callback function
+    // Display Pointable (finger and tool) object data
+    var pointableString = "";
+    if (frame.pointables.length > 0) {
+        var pointable = frame.pointables[0];
+        $("#cell").offset({ top: 1000-pointable.tipPosition[1]*5, left: pointable.tipPosition[0]*8})
+    }
+})
+
+function checkLibrary() {
+    if (typeof Leap === "undefined") {
+        document.getElementById("main").innerHTML = "The Leap JavaScript client library (leap.js file) was not found. Please download the library from the GitHub project at <a href='https://github.com/leapmotion/leapjs'>https://github.com/leapmotion/leapjs</a>."
+        alert("The Leap JavaScript client library (leap.js file) was not found. Please download the latest version from the GitHub project at https://github.com/leapmotion/leapjs");
+    }
+    }</script>
 </head>
 
-<body>
-	<img id="cell" src="img/cell.png" class="animated infinite pulse">
+<body onload="checkLibrary()">
+    <img id="cell" src="img/cell.png">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/autopoetic.js"></script>
 
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="js/autopoetic.js"></script>
 </body>
