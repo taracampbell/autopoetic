@@ -2,12 +2,64 @@
 <html lang="en">
 
 <head>
+	<title>autopoetic</title>
 	<link rel="stylesheet" href="css/autopoetic.css">
+	<script src="js/leap.js"></script>
+	<script>
+// Setup Leap loop with frame callback function
+var controllerOptions = {enableGestures: true};
+
+Leap.loop(controllerOptions, function(frame) {
+  // Body of callback function
+  // Display Pointable (finger and tool) object data
+var pointableString = "";
+if (frame.pointables.length > 0) {
+  for (var i = 0; i < frame.pointables.length; i++) {
+    var pointable = frame.pointables[i];
+
+    pointableString += "Pointable ID: " + pointable.id + "<br />";
+    pointableString += "Belongs to hand with ID: " + pointable.handId + "<br />";
+
+    if (pointable.tool) {
+      pointableString += "Classified as a tool <br />";
+      pointableString += "Length: " + pointable.length.toFixed(1) + " mm<br />";
+      pointableString += "Width: "  + pointable.width.toFixed(1) + " mm<br />";
+    }
+    else {
+      pointableString += "Classified as a finger<br />";
+      pointableString += "Length: " + pointable.length.toFixed(1) + " mm<br />";
+    }
+
+    pointableString += "Direction: " + vectorToString(pointable.direction, 2) + "<br />";
+    pointableString += "Tip position: " + vectorToString(pointable.tipPosition) + " mm<br />";
+    pointableString += "Tip velocity: " + vectorToString(pointable.tipVelocity) + " mm/s<br />";
+  }
+}
+})
+
+	function checkLibrary() {
+  if (typeof Leap === "undefined") {
+    document.getElementById("main").innerHTML = "The Leap JavaScript client library (leap.js file) was not found. Please download the library from the GitHub project at <a href='https://github.com/leapmotion/leapjs'>https://github.com/leapmotion/leapjs</a>."
+    alert("The Leap JavaScript client library (leap.js file) was not found. Please download the latest version from the GitHub project at https://github.com/leapmotion/leapjs");
+  }
+}</script>
 </head>
 
-<body>
+<body onload="checkLibrary()">
+	<h3>Frame data:</h3>
+      <div id="frameData"></div>
+      <div style="clear:both;"></div>
+      <h3>Hand data:</h3>
+      <div id="handData"></div>
+      <div style="clear:both;"></div>
+      <h3>Finger and tool data:</h3>
+      <div id="pointableData"></div>
+      <div style="clear:both;"></div>
+      <h3>Gesture data:</h3>
+      <div id="gestureData"></div>
 	<img id="cell" src="img/cell.png">
 
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="js/autopoetic.js"></script>
+	
 </body>
