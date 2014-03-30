@@ -1,9 +1,9 @@
 $(document).mousemove(function(e){
-    //$("#cell").css({left:e.pageX - size/2, top:e.pageY -size/2});
-    $("#cell").css({left:e.pageX, top:e.pageY});
+    $("#cell").css({left:e.pageX - size/2, top:e.pageY -size/2});
 });
 
 var FPS = 30;
+maxSize = 200;
 xmax = $(window).width();
 ymax = $(window).height();
 size = 100;
@@ -41,7 +41,12 @@ function update() {
             console.log('collision with item id' + id);
             $('#baddie' + id).css('background-color', 'red')
             $('#baddie' + id ).remove();
-            size+= b.size/10;
+
+            size += b.size/10;
+            if(size > maxSize) {
+                size = maxSize;
+            }
+
             baddies.splice(i, 1);
             freeIDs.push(id);
             i--;
