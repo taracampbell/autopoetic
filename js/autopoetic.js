@@ -1,12 +1,18 @@
 $(document).mousemove(function(e){
-    $("#cell").css({left:e.pageX - size/2, top:e.pageY -size/2});
+    setCellSpeed(e.pageX, e.pageY);
 });
-
+function setCellSpeed(targetX, targetY) {
+    mainCell.speedx = (targetX - mainCell.x - mainCell.size/2)/100;
+    mainCell.speedy = (targetY - mainCell.y - mainCell.size/2)/100;
+}
 var FPS = 30;
+mainCell = new Baddie();
+mainCell.speedx = 1;
+mainCell.speedy = 1;
+mainCell.size = 100;
 maxSize = 200;
 xmax = $(window).width();
 ymax = $(window).height();
-size = 100;
 numBaddies = 100;
 baddies = [];
 setInterval(function() {
@@ -18,7 +24,8 @@ for(var i = 0; i < numBaddies; i++) {
     freeIDs.push(i);
 }
 function update() {
-    size -= .1;
+    mainCell.size -= .1;
+    var size = mainCell.size;
     if( Math.random() < 0.1 && baddies.length < numBaddies) {
         addBaddie();
     }
@@ -26,6 +33,8 @@ function update() {
     var c = $("#cell").offset();
     c.x = c.left;
     c.y = c.top;
+    mainCell.x += mainCell.speedx;
+    mainCell.y += mainCell.speedy;
     for (var i = 0; i < baddies.length; i++) 
     {
         var b = baddies[i];
@@ -42,9 +51,9 @@ function update() {
             $('#baddie' + id).css('background-color', 'red')
             $('#baddie' + id ).remove();
 
-            size += b.size/10;
-            if(size > maxSize) {
-                size = maxSize;
+            mainCell.size += b.size/10;
+            if(mainCell.size > maxSize) {
+                mainCell.size = maxSize;
             }
 
             baddies.splice(i, 1);
@@ -55,8 +64,9 @@ function update() {
     }
 }
 function draw() {
-    $("#cell").width(size);
-    $("#cell").height(size);
+    $("#cell").css({left:mainCell.x, top:mainCell.y});
+    $("#cell").width(mainCell.size);
+    $("#cell").height(mainCell.size);
     for (var i = 0; i < baddies.length; i++) 
     {
         var bad = baddies[i];

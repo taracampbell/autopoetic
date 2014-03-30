@@ -16,7 +16,8 @@ Leap.loop(controllerOptions, function(frame) {
     var pointableString = "";
     if (frame.pointables.length > 0) {
         var pointable = frame.pointables[0];
-        $("#cell").offset({ top: 1000-pointable.tipPosition[1]*5, left: pointable.tipPosition[0]*8})
+        //$("#cell").offset({ top: 1000-pointable.tipPosition[1]*5, left: pointable.tipPosition[0]*8})
+        setCellSpeed(pointable.tipPosition[0]*8, 1000- pointable.tipPosition[1]*5);
     }
 })
 
