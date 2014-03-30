@@ -24,7 +24,7 @@ for(var i = 0; i < numBaddies; i++) {
     freeIDs.push(i);
 }
 function update() {
-    mainCell.size -= .1;
+    mainCell.size /= 1.01;
     var size = mainCell.size;
     if( Math.random() < 0.1 && baddies.length < numBaddies) {
         addBaddie();
