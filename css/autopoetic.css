@@ -1,9 +1,15 @@
+html {
+    height: 100%;
+}
 body {
-//	height: 4000px;
-//	background: -webkit-linear-gradient(#66FFFF, #6633FF); /* For Safari 5.1 to 6.0 */
-//	background: -o-linear-gradient(#66FFFF, #6633FF); /* For Opera 11.1 to 12.0 */
-//	background: -moz-linear-gradient(#66FFFF, #6633FF); /* For Firefox 3.6 to 15 */
-//	background: linear-gradient(#66FFFF, #6633FF); /* Standard syntax */
+	height: 100%;
+	margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background: -webkit-linear-gradient(#CCFFFF, #6666FF); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#CCFFFF, #6666FF); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#CCFFFF, #6666FF); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#CCFFFF, #6666FF); /* Standard syntax */
     
 }
 

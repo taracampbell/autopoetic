@@ -26,7 +26,7 @@ for(var i = 0; i < numBaddies; i++) {
 function update() {
     mainCell.size /= 1.01;
     var size = mainCell.size;
-    if( Math.random() < 0.1 && baddies.length < numBaddies) {
+    if( Math.random() < 0.01 && baddies.length < numBaddies) {
         addBaddie();
     }
 
@@ -47,7 +47,9 @@ function update() {
         var d = (c.y - b.y) * (c.y - b.y) + (c.x - b.x) * (c.x - b.x);
         if(d < (size + b.size) * (size + b.size)/4) { //collllisssion
             var id = b.id;
-            console.log('collision with item id' + id);
+	if (b.size > mainCell.size) {
+		alert('LOOOOOSERRR');
+	}
             $('#baddie' + id).css('background-color', 'red')
             $('#baddie' + id ).remove();
 
