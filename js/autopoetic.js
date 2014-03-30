@@ -26,7 +26,7 @@ for(var i = 0; i < numBaddies; i++) {
 function update() {
     mainCell.size /= 1.005;
     var size = mainCell.size;
-    if( Math.random() < 0.01 && baddies.length < numBaddies) {
+    if( Math.random() < 0.02 && baddies.length < numBaddies) {
         addBaddie();
     }
 
@@ -48,7 +48,7 @@ function update() {
         if(d < (size + b.size) * (size + b.size)/4) { //collllisssion
             var id = b.id;
 	if (b.size > mainCell.size) {
-		alert('LOOOOOSERRR');
+		alert('You lost. Your life form was clearly inferior and unable to evolve to a higher form.');
 	}
             $('#baddie' + id).css('background-color', 'red')
             $('#baddie' + id ).remove();
