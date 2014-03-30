@@ -69,15 +69,15 @@ function addBaddie() {
     baddie.id = id;
     baddies.push(baddie);
     var bad = $('body').append('<img id="baddie' + id + '" src="img/cell.png"></img>');
-    $('#baddie' + id).offset({ top: baddie.x, left: baddie.y});
-    $('#baddie' + id).width(bad.size);
-    $('#baddie' + id).height(bad.size);
+    $('#baddie' + id).offset({ top: baddie.y, left: baddie.x});
+    $('#baddie' + id).width(Math.floor(baddie.size));
+    $('#baddie' + id).height(Math.floor(baddie.size));
 }
 
 function Baddie() {
-    this.size = Math.random() * 30;
-    this.speedx = Math.random() * 5;
-    this.speedy = Math.random() * 5;
+    this.size = Math.random() * 50 + 20;
+    this.speedx = Math.random() * 16 - 8;
+    this.speedy = Math.random() * 16 - 8;
     this.x = Math.random() * $(window).width();
     this.y = Math.random() * $(window).height();
 }
